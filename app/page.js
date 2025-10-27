@@ -10,7 +10,7 @@ import Head from "next/head";
 const CONFIG = {
   brand: {
     title: "YogArtKids — Afterschool Program",
-    byline: "Presented by Ms. Patty",
+    byline: "Ms. Patty",
   },
   images: [
     "/images/yogart1.jpg",
@@ -67,7 +67,7 @@ const CONFIG = {
     "Small groups for personalized attention and a nurturing environment"
   ],
   policies: [
-    "6‑week session, small groups (about 10 students)",
+    "6‑week session, small groups ",
     "Bring a water bottle and wear art‑friendly clothes",
   ],
   themes: [
