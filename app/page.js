@@ -1,12 +1,6 @@
 "use client"
-
-export const metadata = {
-  title: "YogArtKids — Afterschool Program by Ms. Patty",
-  description: "Mindful art & movement for children in Miami. Creative, joyful, and nurturing art sessions led by Ms. Patty.",
-};
-
-
 import React from "react";
+import Head from "next/head";
 
 // === YogArtKids one‑pager — layout per sketch ===
 // Row 1:   [ IMAGES ]  [ ABOUT ]
@@ -90,6 +84,8 @@ const money = (n) => new Intl.NumberFormat(undefined, { style: "currency", curre
 export default function Page() {
   const remaining = remainingClassesText(CONFIG.schedule.classDates);
   return (
+    
+    
     <div className="min-h-screen text-neutral-900">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <Header />
