@@ -1,4 +1,11 @@
 "use client"
+
+export const metadata = {
+  title: "YogArtKids — Afterschool Program by Ms. Patty",
+  description: "Mindful art & movement for children in Miami. Creative, joyful, and nurturing art sessions led by Ms. Patty.",
+};
+
+
 import React from "react";
 
 // === YogArtKids one‑pager — layout per sketch ===
