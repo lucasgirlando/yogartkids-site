@@ -108,7 +108,7 @@ export default function Page() {
                 ))}
               </ul>
             }
-            foot={`${CONFIG.schedule.totalClasses} total classes · ${remaining}`}
+            foot={`${CONFIG.schedule.totalClasses} total classes `}
           />
           <MiniCard
             label="Pricing"
