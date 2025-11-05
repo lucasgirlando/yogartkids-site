@@ -302,6 +302,17 @@ function RegistrationForm() {
           <label className="formRow">Name of the child<input name="child_name" required className="input" /></label>
           <label className="formRow">Parent/Guardian Name<input name="parent_name" required className="input" /></label>
           <label className="formRow">Parent/Guardian Phone<input name="parent_phone" required className="input" /></label>
+          <label className="formRow">
+  Parent/Guardian Email
+  <input
+    type="email"
+    name="email"            // <-- keep this exact name for Web3Forms auto Reply-To
+    required
+    placeholder="parent@example.com"
+    className="input"
+  />
+</label>
+
           <label className="formRow">Parent/Guardian Address<input name="parent_address" className="input" /></label>
           <label className="formRow">Emergency Contact (name & number)<input name="emergency_contact" className="input" /></label>
           <label className="formRow">Authorized Pickup<input name="authorized_pickup" className="input" /></label>
