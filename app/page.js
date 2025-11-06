@@ -1,6 +1,8 @@
 "use client"
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 
 // === YogArtKids one‑pager — layout per sketch ===
 // Row 1:   [ IMAGES ]  [ ABOUT ]
@@ -83,16 +85,20 @@ const money = (n) => new Intl.NumberFormat(undefined, { style: "currency", curre
 
 function SiteHeader() {
   return (
-    <header className="flex justify-between items-center py-4 px-6 bg-white/80 backdrop-blur border-b border-neutral-200 sticky top-0 z-50">
-      <a href="/" className="font-extrabold text-xl text-sky-700">YogArtKids</a>
-      <nav className="flex gap-6 text-[15px] font-medium text-neutral-700">
-        <a href="/" className="hover:text-sky-600">After School Program</a>
-        <a href="/about" className="hover:text-sky-600">About Us</a>
-        <a href="/contact" className="hover:text-sky-600">Contact</a>
+    <header className="siteHeader flex justify-between items-center py-4 px-6">
+      <a href="/" className="flex items-center gap-3">
+        <Image src="/images/logo.png" alt="Logo" width={220} height={100} />
+      </a>
+
+      <nav className="flex gap-8 text-[15px] font-medium text-neutral-800">
+        <a href="/"        className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">After School Program</a>
+        <a href="/about"   className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">About Us</a>
+        <a href="/contact" className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">Contact</a>
       </nav>
     </header>
   );
 }
+
 
 
 export default function Page() {
@@ -101,8 +107,8 @@ export default function Page() {
     
     
     <div className="min-h-screen text-neutral-900">
+        <SiteHeader />
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <Site Header/>
         <Header />
 
         {/* Row 1 */}
@@ -156,8 +162,6 @@ export default function Page() {
 function Header() {
   return (
     <header className="mb-4">
-      <h1 className="title">{CONFIG.brand.title}</h1>
-      <p className="byline">{CONFIG.brand.byline}</p>
     </header>
   );
 }
@@ -367,6 +371,7 @@ const css = `
   /* --- Professional aesthetic refresh --- */
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+  
   :root{
     --bg:#f7f7fb;         /* fallback page background */
     --card:#ffffff;       /* card background */
@@ -376,16 +381,95 @@ const css = `
     --accent:#0ea5e9;     /* sky-500 */
     --radius:18px;
     --shadow:0 8px 24px rgba(16,24,40,.06), 0 2px 6px rgba(16,24,40,.04);
+    --cream:#FFF7EF;
+    --sand:#F6E6D2;
+    --peach:#F2C7A3;
+    --soft-orange:#E8893A;     /* underline / brand accent */
+    --sage:#BFD8D2;
+    --seafoam:#A8D9D1;
+    --teal:#78C6C4;
+
+    --bg: var(--cream);        /* fallback */
+    --brand-orange: var(--soft-orange);
+
+  /* softer / lighter take on the page art for the header */
+--art-bg-light:
+  radial-gradient(60% 55% at 15% 20%, rgba(168,217,209,.22) 0%, transparent 60%),
+  radial-gradient(70% 60% at 80% 15%, rgba(242,199,163,.28) 0%, transparent 65%),
+  radial-gradient(55% 55% at 20% 85%, rgba(191,216,210,.24) 0%, transparent 60%),
+  radial-gradient(45% 45% at 80% 80%, rgba(232,137,58,.16) 0%, transparent 55%),
+  /* lighter base sweep */
+  linear-gradient(
+    180deg,
+    #F8EFE4 0%,   /* lightened sand */
+    #FFF9F4 35%,  /* lightened cream */
+    #DDEEEB 100%  /* lightened sage */
+  );
+
+
+      --art-bg:
+    radial-gradient(60% 55% at 15% 20%, rgba(168,217,209,.40) 0%, transparent 60%),
+    radial-gradient(70% 60% at 80% 15%, rgba(242,199,163,.50) 0%, transparent 65%),
+    radial-gradient(55% 55% at 20% 85%, rgba(191,216,210,.45) 0%, transparent 60%),
+    radial-gradient(45% 45% at 80% 80%, rgba(232,137,58,.24) 0%, transparent 55%),
+    linear-gradient(180deg, var(--sand) 0%, var(--cream) 30%, var(--sage) 100%);
+
   }
+
+    /* ===== HEADER ===== */
+/* ===== HEADER (lighter gradient) ===== */
+.siteHeader{
+  position: sticky; top: 0; z-index: 50;
+  background:
+    /* very soft veil so text/logo pop but stay crisp */
+    linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.88)),
+    var(--art-bg-light);
+  background-attachment: scroll, fixed; /* keep the art fixed */
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+
+/* ensure no extra overlays blur the logo */
+.siteHeader::before { content:none; }
+.siteHeader::after  { content:none; }
+
 
   /* --- Full-page background image --- */
   html, body{
-    background: var(--bg) url("/images/yogartbg.jpg") center center / cover no-repeat fixed;
     color: var(--ink);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     min-height: 100%;
+
+      /* layered “blobby water/sand” gradients */
+  background: var(--art-bg);
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
   }
   body{ position: relative; }
+
+  body::after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none;
+  background-image:
+    url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' preserveAspectRatio='none'>\
+        <defs>\
+          <linearGradient id='f' x1='0' y1='0' x2='0' y2='1'>\
+            <stop offset='0' stop-color='%23ffffff' stop-opacity='0.10'/>\
+            <stop offset='1' stop-color='%23ffffff' stop-opacity='0'/>\
+          </linearGradient>\
+        </defs>\
+        <g fill='none' stroke='%23ffffff' stroke-opacity='0.18' stroke-width='2'>\
+          <path d='M0,120 C200,80 400,160 600,120 800,80 1000,160 1200,120'/>\
+          <path d='M0,260 C200,220 400,300 600,260 800,220 1000,300 1200,260'/>\
+          <path d='M0,400 C200,360 400,440 600,400 800,360 1000,440 1200,400'/>\
+          <path d='M0,540 C200,500 400,580 600,540 800,500 1000,580 1200,540'/>\
+        </g>\
+        <rect width='1200' height='800' fill='url(%23f)'/>\
+      </svg>");
+  background-size: cover;
+  mix-blend-mode: soft-light;
+  opacity:.75;
+  z-index:-1;
+}
 
   /* Soft white overlay to keep content readable on top of photo */
   body::before{
