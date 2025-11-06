@@ -81,6 +81,20 @@ const CONFIG = {
 
 const money = (n) => new Intl.NumberFormat(undefined, { style: "currency", currency: "USD" }).format(n);
 
+function SiteHeader() {
+  return (
+    <header className="flex justify-between items-center py-4 px-6 bg-white/80 backdrop-blur border-b border-neutral-200 sticky top-0 z-50">
+      <a href="/" className="font-extrabold text-xl text-sky-700">YogArtKids</a>
+      <nav className="flex gap-6 text-[15px] font-medium text-neutral-700">
+        <a href="/" className="hover:text-sky-600">After School Program</a>
+        <a href="/about" className="hover:text-sky-600">About Us</a>
+        <a href="/contact" className="hover:text-sky-600">Contact</a>
+      </nav>
+    </header>
+  );
+}
+
+
 export default function Page() {
   const remaining = remainingClassesText(CONFIG.schedule.classDates);
   return (
@@ -88,6 +102,7 @@ export default function Page() {
     
     <div className="min-h-screen text-neutral-900">
       <div className="mx-auto max-w-6xl px-4 py-8">
+        <Site Header/>
         <Header />
 
         {/* Row 1 */}
@@ -203,6 +218,8 @@ function AboutCard() {
     </section>
   );
 }
+
+
 
 
 
