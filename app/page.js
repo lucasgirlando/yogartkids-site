@@ -83,21 +83,24 @@ const CONFIG = {
 
 const money = (n) => new Intl.NumberFormat(undefined, { style: "currency", currency: "USD" }).format(n);
 
+// keep: import Link from "next/link"; import Image from "next/image";
+
 function SiteHeader() {
   return (
     <header className="siteHeader flex justify-between items-center py-4 px-6">
-      <a href="/" className="flex items-center gap-3">
-        <Image src="/images/logo.png" alt="Logo" width={220} height={100} />
-      </a>
+      <Link href="/" className="flex items-center gap-3" aria-label="YogArtKids home">
+        <Image src="/images/logo.png" alt="YogArtKids" width={220} height={100} priority />
+      </Link>
 
       <nav className="flex gap-8 text-[15px] font-medium text-neutral-800">
-        <a href="/"        className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">After School Program</a>
-        <a href="/about"   className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">About Us</a>
-        <a href="/contact" className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">Contact</a>
+        <Link href="/"        className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">After School Program</Link>
+        <Link href="/about"   className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">About Us</Link>
+        <Link href="/contact" className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">Contact</Link>
       </nav>
     </header>
   );
 }
+
 
 
 
@@ -106,9 +109,9 @@ export default function Page() {
   return (
     
     
-    <div className="min-h-screen text-neutral-900">
-        <SiteHeader />
-      <div className="mx-auto max-w-6xl px-4 py-8">
+<div className="min-h-screen text-neutral-900">
+  <SiteHeader />
+  <div className="mx-auto max-w-6xl px-4 py-8">
         <Header />
 
         {/* Row 1 */}
@@ -416,7 +419,6 @@ const css = `
 
   }
 
-    /* ===== HEADER ===== */
 /* ===== HEADER (lighter gradient) ===== */
 .siteHeader{
   position: sticky; top: 0; z-index: 50;
