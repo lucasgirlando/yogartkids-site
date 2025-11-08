@@ -89,7 +89,7 @@ function SiteHeader() {
   return (
     <header className="siteHeader flex justify-between items-center py-4 px-6">
       <Link href="/" className="flex items-center gap-3" aria-label="YogArtKids home">
-        <Image src="/images/logo.png" alt="YogArtKids" width={220} height={100} priority />
+        <Image src="/images/logo.png" alt="YogArtKids" width={170} height={100} priority />
       </Link>
 
       <nav className="flex gap-8 text-[15px] font-medium text-neutral-800">
@@ -157,7 +157,6 @@ export default function Page() {
 <Footer />
 
       </div>
-      <style>{css}</style>
     </div>
   );
 }

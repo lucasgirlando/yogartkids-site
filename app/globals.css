@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+:root{
+    --bg:#f7f7fb;         /* fallback page background */
+    --card:#ffffff;       /* card background */
+    --line:#e7e8ee;       /* subtle borders */
+    --ink:#111827;        /* primary text */
+    --muted:#6b7280;      /* secondary text */
+    --accent:#0ea5e9;     /* sky-500 */
+    --radius:18px;
+    --shadow:0 8px 24px rgba(16,24,40,.06), 0 2px 6px rgba(16,24,40,.04);
+    --cream:#FFF7EF;
+    --sand:#F6E6D2;
+    --peach:#F2C7A3;
+    --soft-orange:#E8893A;     /* underline / brand accent */
+    --sage:#BFD8D2;
+    --seafoam:#A8D9D1;
+    --teal:#78C6C4;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+    --bg: var(--cream);        /* fallback */
+    --brand-orange: var(--soft-orange);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* softer / lighter take on the page art for the header */
+--art-bg-light:
+  radial-gradient(60% 55% at 15% 20%, rgba(168,217,209,.22) 0%, transparent 60%),
+  radial-gradient(70% 60% at 80% 15%, rgba(242,199,163,.28) 0%, transparent 65%),
+  radial-gradient(55% 55% at 20% 85%, rgba(191,216,210,.24) 0%, transparent 60%),
+  radial-gradient(45% 45% at 80% 80%, rgba(232,137,58,.16) 0%, transparent 55%),
+  /* lighter base sweep */
+  linear-gradient(
+    180deg,
+    #F8EFE4 0%,   /* lightened sand */
+    #FFF9F4 35%,  /* lightened cream */
+    #DDEEEB 100%  /* lightened sage */
+  );
+
+
+      --art-bg:
+    radial-gradient(60% 55% at 15% 20%, rgba(168,217,209,.40) 0%, transparent 60%),
+    radial-gradient(70% 60% at 80% 15%, rgba(242,199,163,.50) 0%, transparent 65%),
+    radial-gradient(55% 55% at 20% 85%, rgba(191,216,210,.45) 0%, transparent 60%),
+    radial-gradient(45% 45% at 80% 80%, rgba(232,137,58,.24) 0%, transparent 55%),
+    linear-gradient(180deg, var(--sand) 0%, var(--cream) 30%, var(--sage) 100%);
+
   }
+
+/* ===== HEADER (lighter gradient) ===== */
+.siteHeader{
+  position: sticky; top: 0; z-index: 50;
+  background:
+    /* very soft veil so text/logo pop but stay crisp */
+    linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.88)),
+    var(--art-bg-light);
+  background-attachment: scroll, fixed; /* keep the art fixed */
+  border-bottom: 1px solid rgba(0,0,0,.07);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ensure no extra overlays blur the logo */
+.siteHeader::before { content:none; }
+.siteHeader::after  { content:none; }
+
+
+  /* --- Full-page background image --- */
+  html, body{
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    min-height: 100%;
+
+      /* layered “blobby water/sand” gradients */
+  background: var(--art-bg);
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+  }
+  body{ position: relative; }
+
+  body::after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none;
+  background-image:
+    url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' preserveAspectRatio='none'>\
+        <defs>\
+          <linearGradient id='f' x1='0' y1='0' x2='0' y2='1'>\
+            <stop offset='0' stop-color='%23ffffff' stop-opacity='0.10'/>\
+            <stop offset='1' stop-color='%23ffffff' stop-opacity='0'/>\
+          </linearGradient>\
+        </defs>\
+        <g fill='none' stroke='%23ffffff' stroke-opacity='0.18' stroke-width='2'>\
+          <path d='M0,120 C200,80 400,160 600,120 800,80 1000,160 1200,120'/>\
+          <path d='M0,260 C200,220 400,300 600,260 800,220 1000,300 1200,260'/>\
+          <path d='M0,400 C200,360 400,440 600,400 800,360 1000,440 1200,400'/>\
+          <path d='M0,540 C200,500 400,580 600,540 800,500 1000,580 1200,540'/>\
+        </g>\
+        <rect width='1200' height='800' fill='url(%23f)'/>\
+      </svg>");
+  background-size: cover;
+  mix-blend-mode: soft-light;
+  opacity:.75;
+  z-index:-1;
 }
+
+  /* Soft white overlay to keep content readable on top of photo */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.75); /* tweak 0.65–0.85 to taste */
+    z-index: -1; /* sit behind everything */
+  }
+
+  .title{font-weight:800;letter-spacing:-.02em;line-height:1.08;font-size:clamp(30px,4.6vw,54px)}
+  .byline{color:var(--muted);margin-top:.35rem;font-size:clamp(14px,1.6vw,16px)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .section{font-size:18px;font-weight:750;margin-bottom:.6rem;position:relative}
+  .section::after{content:"";display:block;width:38px;height:3px;background:linear-gradient(90deg,#f58220,#e66f00);border-radius:999px;margin-top:.35rem}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 3px 10px rgba(16,24,40,.04)}
+  .miniLabel{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .miniValue{margin-top:.35rem;font-weight:700}
+  .miniFoot{margin-top:.25rem;color:var(--muted);font-size:13px}
+  .checklist{display:grid;gap:.5rem;padding-left:1.1rem}
+  .steps{display:grid;gap:.7rem;margin:0;padding-left:1.25rem}
+  .note{margin-top:12px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;color:#475569;background:#f8fafc}
+  .link{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace}
+
+  /* slideshow dots */
+  .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;display:flex;gap:6px}
+  .dot{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.55)}
+  .dot.active{background:#fff}
+
+  /* image aspect to feel premium */
+  .hero{aspect-ratio:5/3}
+
+  /* Compact About: clamp height with fade + toggle */
+  .aboutClamp{
+    max-height: 260px;
+    overflow: hidden;
+    position: relative;
+  }
+  .aboutClamp::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 55%, var(--card) 100%);
+  }
+  .linkButton{
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+  }
+  .linkButton:hover{ text-decoration: underline; }
+
+  /* buttons & form */
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:.7rem 1.05rem;border-radius:12px;background:linear-gradient(180deg,#111827,#0f172a);color:#fff;font-weight:700;box-shadow:0 2px 6px rgba(16,24,40,.12);border:1px solid #0f172a}
+  .btn:hover{opacity:.95}
+  .formRow{display:grid;gap:.35rem;font-size:14px;color:#374151}
+  .input,.textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:.6rem .75rem;background:#fff}
+  .input:focus,.textarea:focus{outline:none;border-color:#b1b6ff;box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+
+/* === Subtle floating animation for image cards === */
+@keyframes gentleFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-card {
+  animation: gentleFloat 5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* Optional: a tiny hover lift */
+.float-card:hover {
+  transform: translateY(-10px) scale(1.01);
+}
+
+
+;
