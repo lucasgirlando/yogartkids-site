@@ -12,9 +12,9 @@ function SiteHeader() {
       </Link>
 
       <nav className="flex gap-8 text-[15px] font-medium text-neutral-800">
-        <Link href="/"        className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">After School Program</Link>
-        <Link href="/about"   className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">About Us</Link>
-        <Link href="/contact" className="relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">Contact</Link>
+        <Link href="/"        className="relative pb-1 whitespace-nowrap after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">After School Program</Link>
+        <Link href="/about"   className="relative pb-1 whitespace-nowrap after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">About Us</Link>
+        <Link href="/contact" className="relative pb-1 whitespace-nowrap after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-[#f58220]">Contact</Link>
       </nav>
     </header>
   );
