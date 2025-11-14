@@ -83,7 +83,7 @@ export default function AboutPage() {
 
           <div className="order-1 md:order-2 card overflow-hidden p-0 float-card">
             <Image
-              src="/images/about-art.jpeg"   /* replace with your photo */
+              src="/images/yogart20.jpeg"   /* replace with your photo */
               alt="Mindful yoga and creative flow"
               width={1600}
               height={1200}

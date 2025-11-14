@@ -5,6 +5,7 @@ import Image from "next/image";
 const CONTACT = {
   phoneRaw: "3054795142",
   phonePretty: "(305) 479-5142",
+  phonePretty2: "(786) 486-1560",
   email: "yogartkidsmiami@gmail.com",
   instagram: "yogartkidsmiami",
 };
@@ -76,10 +77,14 @@ export default function ContactPage() {
             <span className="text-2xl">📞</span>
             <p className="miniLabel">Phone</p>
             <a
-              href={`tel:${CONTACT.phoneRaw}`}
               className="text-[15px] font-semibold text-neutral-800 hover:underline"
             >
               {CONTACT.phonePretty}
+            </a>
+                        <a
+              className="text-[15px] font-semibold text-neutral-800 hover:underline"
+            >
+              {CONTACT.phonePretty2}
             </a>
             <p className="text-[13px] text-neutral-500">
               Call or text for quick questions about classes and schedule.
