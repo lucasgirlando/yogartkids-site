@@ -43,7 +43,7 @@ const CONFIG = {
   },
   pricing: {
     dropIn: 45,
-    packageLabel: "6‑Class Package",
+    packageLabel: "5‑Class Package",
     packageTotal: 240,
   },
   contact: {
@@ -118,19 +118,7 @@ export default function Page() {
         </div>
 
         {/* Row 2 */}
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
-
-          <MiniCard
-            label="Schedule"
-            value={
-              <ul className="m-0 p-0 list-none leading-7">
-                {CONFIG.schedule.lines.map((l) => (
-                  <li key={l.day}><strong>{l.day}</strong> · {l.time} · {l.ages}</li>
-                ))}
-              </ul>
-            }
-            foot={`${CONFIG.schedule.totalClasses} total classes `}
-          />
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           <MiniCard
             label="Pricing"
             value={
@@ -143,9 +131,7 @@ export default function Page() {
         </div>
 
 {/* Row 3 */}
-<div className="mt-6 grid gap-6 lg:grid-cols-3">
-  <Policies />
-  <ThemesCard />
+<div className="mt-2 grid gap-2 lg:grid-cols-1">
   <RegisterCard />
 </div>
 
@@ -267,19 +253,6 @@ function AboutCard() {
 
 
 
-function Policies() {
-  return (
-    <section className="card">
-      <h2 className="section">Policies & Notes</h2>
-      <ul className="list-disc pl-5 leading-7 text-[15px] text-neutral-700 m-0">
-        {CONFIG.policies.map((p) => (
-          <li key={p}>{p}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 function RegisterCard() {
   const email = CONFIG.contact.email;
   return (
@@ -301,27 +274,6 @@ function RegisterCard() {
   );
 }
 
-function ThemesCard() {
-  return (
-    <section className="card">
-      <h2 className="section">Artistic Themes</h2>
-      <div className="grid gap-2 text-[15px] text-neutral-800">
-        {CONFIG.themes.map((t) => (
-          <div key={t.title} className="flex items-start gap-2">
-            <div className="text-lg leading-6">{t.icon}</div>
-            <div>
-              <div className="font-semibold">
-                {t.title}{" "}
-                <span className="font-normal text-neutral-600">— {t.artists}</span>
-              </div>
-              <div className="text-neutral-700">{t.line}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function MiniCard({ label, value, foot }) {
   return (
